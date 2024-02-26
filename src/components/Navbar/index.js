@@ -1,10 +1,23 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import {withRouter, Link} from 'react-router-dom'
 import {FaMoon} from 'react-icons/fa'
+import {RiSunLine} from 'react-icons/ri'
+import {IoMdMenu, IoMdClose} from 'react-icons/io'
+import {IoLogOutOutline} from 'react-icons/io5'
+import Popup from 'reactjs-popup'
 
 import ThemeContext from '../../Context/ThemeContext'
+import MenuListItems from '../MenuItemsList'
 
-import {WebImage, Nav} from './styledComponents'
+import {
+  WebImage,
+  Nav,
+  IconBtn,
+  SubNav,
+  IconsContainer,
+  PopupContainer,
+  CrossBtn,
+} from './styledComponents'
 
 const Navbar = props => {
   const {history} = props
@@ -12,10 +25,32 @@ const Navbar = props => {
   return (
     <ThemeContext.Consumer>
       {value => {
-        const {isDark} = value
+        const {isDark, changeTheme} = value
+
+        const renderMenuPopup = () => (
+          <Popup
+            modal
+            open
+            trigger={
+              <IconBtn type="button">
+                <IoMdMenu size={40} color={isDark ? '#fff' : '#000'} />
+              </IconBtn>
+            }
+          >
+            {close => (
+              <PopupContainer isDark={isDark}>
+                <CrossBtn type="button" onClick={() => close()}>
+                  <IoMdClose size={40} color={isDark ? '#fff' : '#000'} />
+                </CrossBtn>
+                <MenuListItems />
+              </PopupContainer>
+            )}
+          </Popup>
+        )
+
         return (
           <Nav isDark={isDark}>
-            <div>
+            <SubNav>
               <Link to="/">
                 <WebImage
                   src={
@@ -26,12 +61,24 @@ const Navbar = props => {
                   alt="website logo"
                 />
               </Link>
-              <div>
-                <button type="button" data-testid="theme">
-                  <FaMoon />
-                </button>
-              </div>
-            </div>
+              <IconsContainer>
+                <IconBtn
+                  type="button"
+                  data-testid="theme"
+                  onClick={() => changeTheme()}
+                >
+                  {isDark ? (
+                    <RiSunLine size={30} color="#fff" />
+                  ) : (
+                    <FaMoon size={30} color="#000" />
+                  )}
+                </IconBtn>
+                {renderMenuPopup()}
+                <IconBtn type="button">
+                  <IoLogOutOutline size={40} color={isDark ? '#fff' : '#000'} />
+                </IconBtn>
+              </IconsContainer>
+            </SubNav>
           </Nav>
         )
       }}

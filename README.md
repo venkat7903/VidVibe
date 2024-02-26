@@ -2,7 +2,7 @@ In this assignment let's build an **Nxt Watch** by applying the concepts we have
 
 git clone to CCBP IDE - cd .. && rm -rf {codingPracticeName} && mkdir {codingPracticeName} && cd {codingPracticeName} && git clone {gir repository URL} /home/workspace/reactjs/coding-practices/{codingPracticeName}
 
-git clone to CCBP IDE - cd .. && rm -rf nxtWatchApp && mkdir nxtWatchApp && cd nxtWatchApp && git clone https://github.com/venkat7903/Nxt-Watch.git /home/workspace/reactjs/coding-practices/nxtWatchApp
+cd .. && rm -rf nxtWatchApp && mkdir nxtWatchApp && cd nxtWatchApp && git clone https://github.com/venkat7903/Nxt-Watch.git /home/workspace/reactjs/coding-practices/nxtWatchApp
 
 ### Refer to videos below:
 

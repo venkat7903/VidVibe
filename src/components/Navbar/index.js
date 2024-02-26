@@ -5,6 +5,7 @@ import {RiSunLine} from 'react-icons/ri'
 import {IoMdMenu, IoMdClose} from 'react-icons/io'
 import {IoLogOutOutline} from 'react-icons/io5'
 import Popup from 'reactjs-popup'
+import Cookies from 'js-cookie'
 
 import ThemeContext from '../../Context/ThemeContext'
 import MenuListItems from '../MenuItemsList'
@@ -17,10 +18,21 @@ import {
   IconsContainer,
   PopupContainer,
   CrossBtn,
+  BurgerBtn,
+  LogoutBtn,
+  PopBtn,
+  LogoutPopupContainer,
+  SubLogoutPopupContainer,
+  MobileLogoutBtn,
+  ProfImg,
 } from './styledComponents'
 
 const Navbar = props => {
-  const {history} = props
+  const onLogout = () => {
+    const {history} = props
+    Cookies.remove('jwt_token')
+    history.replace('/login')
+  }
 
   return (
     <ThemeContext.Consumer>
@@ -30,11 +42,10 @@ const Navbar = props => {
         const renderMenuPopup = () => (
           <Popup
             modal
-            open
             trigger={
-              <IconBtn type="button">
-                <IoMdMenu size={40} color={isDark ? '#fff' : '#000'} />
-              </IconBtn>
+              <BurgerBtn type="button">
+                <IoMdMenu size={40} color={isDark === true ? '#fff' : '#000'} />
+              </BurgerBtn>
             }
           >
             {close => (
@@ -44,6 +55,38 @@ const Navbar = props => {
                 </CrossBtn>
                 <MenuListItems />
               </PopupContainer>
+            )}
+          </Popup>
+        )
+
+        const renderLogoutPopup = () => (
+          <Popup
+            modal
+            trigger={
+              <div>
+                <MobileLogoutBtn type="button">
+                  <IoLogOutOutline size={40} color={isDark ? '#fff' : '#000'} />
+                </MobileLogoutBtn>
+                <LogoutBtn isDark={isDark} type="button">
+                  Logout
+                </LogoutBtn>
+              </div>
+            }
+          >
+            {close => (
+              <LogoutPopupContainer>
+                <SubLogoutPopupContainer isDark={isDark}>
+                  <p>Are you sure, you want to logout?</p>
+                  <div style={{display: 'flex'}}>
+                    <PopBtn outline type="button" onClick={() => close()}>
+                      Cancel
+                    </PopBtn>
+                    <PopBtn type="button" onClick={onLogout}>
+                      Logout
+                    </PopBtn>
+                  </div>
+                </SubLogoutPopupContainer>
+              </LogoutPopupContainer>
             )}
           </Popup>
         )
@@ -74,9 +117,11 @@ const Navbar = props => {
                   )}
                 </IconBtn>
                 {renderMenuPopup()}
-                <IconBtn type="button">
-                  <IoLogOutOutline size={40} color={isDark ? '#fff' : '#000'} />
-                </IconBtn>
+                <ProfImg
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
+                  alt="profile"
+                />
+                {renderLogoutPopup()}
               </IconsContainer>
             </SubNav>
           </Nav>

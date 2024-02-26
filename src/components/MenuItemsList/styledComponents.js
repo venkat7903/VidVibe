@@ -10,11 +10,23 @@ export const MenuList = styled.ul`
   padding-left: 0;
 `
 
-export const MenuItem = styled.li``
+export const MenuItem = styled.li`
+  color: ${props => (props.isDark ? '#fff' : '#000')};
+  background: transparent;
+  background: ${props =>
+    props.isActive === true && props.isDark === true && '#212121'};
+  background: ${props =>
+    props.isActive === true && props.isDark === false && '#cbd5e1'};
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+`
 
 export const MenuLink = styled.p`
   text-decoration: none;
-  color: #fff;
+  color: ${props => (props.isDark ? '#fff' : '#000')};
+  font-size: 18px;
+  margin-left: 20px;
 `
 
 // export const MenuList = styled.ul``

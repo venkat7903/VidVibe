@@ -109,7 +109,7 @@ class VideoItemDetails extends Component {
 
   render() {
     return (
-      <div data-testid="videoItemDetails">
+      <div>
         <Navbar />
         <div style={{display: 'flex'}}>
           <Sidebar />
@@ -263,7 +263,10 @@ class VideoItemDetails extends Component {
                   }
 
                   return (
-                    <VideoItemDetailsContainer isDark={isDark}>
+                    <VideoItemDetailsContainer
+                      data-testid="videoItemDetails"
+                      isDark={isDark}
+                    >
                       {renderViews()}
                     </VideoItemDetailsContainer>
                   )

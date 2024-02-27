@@ -25,7 +25,7 @@ const FailureView = props => {
             </FailHeading>
             <Desc isDark={isDark}>
               We are having some trouble to complete your request. Please try
-              again
+              again.
             </Desc>
             <RetryBtn onClick={() => onClickRetry()} type="button">
               Retry

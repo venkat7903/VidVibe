@@ -22,9 +22,13 @@ const GameItem = props => {
                 padding: 0,
               }}
             >
-              <img style={{width: '100%'}} src={thumbnailUrl} alt="thumbnail" />
+              <img
+                style={{width: '100%'}}
+                src={thumbnailUrl}
+                alt="video thumbnail"
+              />
               <InfoList isDark={isDark} style={{marginLeft: '10px'}}>
-                <h3
+                <p
                   style={{
                     marginTop: '0',
                     marginBottom: '5px',
@@ -32,7 +36,7 @@ const GameItem = props => {
                   }}
                 >
                   {title}
-                </h3>
+                </p>
                 <p
                   style={{
                     marginTop: '0',

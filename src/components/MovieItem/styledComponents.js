@@ -15,7 +15,7 @@ export const MovieListItem = styled.li`
   }
   @media (min-width: 992px) {
     width: 32%;
-    margin-right: 10px;
+    margin-right: 7px;
   }
 `
 

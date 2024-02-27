@@ -6,6 +6,7 @@ import ActiveMenuContext from './Context/ActiveTabContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './components/Login'
 import Home from './components/Home'
+import VideoItemDetails from './components/VideoItemDetails'
 
 import './App.css'
 
@@ -35,7 +36,11 @@ class App extends Component {
             <ProtectedRoute exact path="/trending" component={null} />
             <ProtectedRoute exact path="/gaming" component={null} />
             <ProtectedRoute exact path="/saved-videos" component={null} />
-            <ProtectedRoute exact path="/videos/:id" component={null} />
+            <ProtectedRoute
+              exact
+              path="/videos/:id"
+              component={VideoItemDetails}
+            />
             <ProtectedRoute exact path="/not-found" component={null} />
             <Redirect to="/not-found" />
           </Switch>

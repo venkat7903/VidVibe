@@ -73,7 +73,6 @@ class Home extends Component {
     if (response.ok === true) {
       const data = await response.json()
       const formattedVideoList = data.videos.map(each => getFormatted(each))
-      console.log(formattedVideoList)
       this.setState({
         apiStatus: apiStatusConstants.success,
         videosList: formattedVideoList,

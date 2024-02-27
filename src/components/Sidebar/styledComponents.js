@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const SidebarContainer = styled.div`
   width: 30%;
   max-width: 250px;
-  height: 100vh;
+  min-height: 100vh;
   background: ${props => (props.isDark ? '#000' : '#fff')};
   color: ${props => (props.isDark ? '#fff' : '#000')};
   margin-top: 0px;

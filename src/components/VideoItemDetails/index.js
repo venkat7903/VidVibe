@@ -7,9 +7,11 @@ import {AiOutlineLike, AiOutlineDislike} from 'react-icons/ai'
 import {IoMdSave} from 'react-icons/io'
 
 import Navbar from '../Navbar'
+import FailureView from '../FailureView'
 import Sidebar from '../Sidebar'
 
 import ThemeContext from '../../Context/ThemeContext'
+import SavedContext from '../../Context/SavedVideos'
 
 import {
   VideoItemDetailsContainer,
@@ -22,7 +24,6 @@ import {
   HRLine,
   InfoContainer,
 } from './styledComponents'
-import {LogoImg} from '../Sidebar/styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -102,6 +103,10 @@ class VideoItemDetails extends Component {
     }))
   }
 
+  onClickRetry = () => {
+    this.getVideoDetails()
+  }
+
   render() {
     return (
       <div data-testid="videoItemDetails">
@@ -109,132 +114,162 @@ class VideoItemDetails extends Component {
         <div style={{display: 'flex'}}>
           <Sidebar />
           <ThemeContext.Consumer>
-            {value => {
-              const {isDark} = value
-              const {isLiked, isDisliked} = this.state
-              const renderVideoDetails = () => {
-                const {videoData} = this.state
-                const {
-                  id,
-                  title,
-                  videoUrl,
-                  thumbnailUrl,
-                  channel,
-                  viewCount,
-                  publishedAt,
-                  description,
-                } = videoData
-                const {name, profileImgUrl, subscriberCount} = channel
-                const date = formatDistanceToNow(new Date(publishedAt)).split(
-                  ' ',
-                )
+            {value => (
+              <SavedContext.Consumer>
+                {saveValue => {
+                  const {savedVideos, toggleSaved} = saveValue
+                  const {isDark} = value
+                  const {isLiked, isDisliked} = this.state
 
-                return (
-                  <VideoDetails isDark={isDark}>
-                    <ReactPlayer url={videoUrl} width="100%" />
-                    <SubVideoDetails>
-                      <p style={{fontSize: '18px'}}>{title}</p>
-                      <InfoContainer>
-                        <InfoList>
-                          <InfoItem isDark={isDark}>
-                            <p style={{margin: 0}}>{`${viewCount} views`}</p>
-                          </InfoItem>
-                          <InfoItem isDark={isDark}>
-                            <p
-                              style={{margin: 0, marginLeft: '15px'}}
-                            >{`• ${date[1]} ${date[2]} ago`}</p>
-                          </InfoItem>
-                        </InfoList>
-                        <div style={{display: 'flex', alignItems: 'center'}}>
-                          <FeatBtn
-                            isDark={isDark}
-                            type="button"
-                            onClick={this.onLike}
-                            isLiked={isLiked}
+                  const savedIdList = savedVideos.map(each => each.id)
+
+                  const renderVideoDetails = () => {
+                    const {videoData} = this.state
+                    const {
+                      id,
+                      title,
+                      videoUrl,
+                      channel,
+                      viewCount,
+                      publishedAt,
+                      description,
+                    } = videoData
+                    const {name, profileImgUrl, subscriberCount} = channel
+
+                    const isSaved = savedIdList.includes(id)
+
+                    const date = formatDistanceToNow(
+                      new Date(publishedAt),
+                    ).split(' ')
+
+                    return (
+                      <VideoDetails isDark={isDark}>
+                        <ReactPlayer url={videoUrl} width="100%" controls />
+                        <SubVideoDetails>
+                          <p style={{fontSize: '18px'}}>{title}</p>
+                          <InfoContainer>
+                            <InfoList>
+                              <InfoItem isDark={isDark}>
+                                <p
+                                  style={{margin: 0}}
+                                >{`${viewCount} views`}</p>
+                              </InfoItem>
+                              <InfoItem isDark={isDark}>
+                                <p
+                                  style={{margin: 0, marginLeft: '15px'}}
+                                >{`• ${date[1]} ${date[2]} ago`}</p>
+                              </InfoItem>
+                            </InfoList>
+                            <div
+                              style={{display: 'flex', alignItems: 'center'}}
+                            >
+                              <FeatBtn
+                                isDark={isDark}
+                                type="button"
+                                onClick={this.onLike}
+                                isLiked={isLiked}
+                              >
+                                <AiOutlineLike size={16} />
+                                <span
+                                  style={{fontSize: '16px', marginLeft: '5px'}}
+                                >
+                                  Like
+                                </span>
+                              </FeatBtn>
+                              <FeatBtn
+                                isDark={isDark}
+                                type="button"
+                                onClick={this.onDisliked}
+                                isLiked={isDisliked}
+                              >
+                                <AiOutlineDislike size={16} />
+                                <span
+                                  style={{fontSize: '16px', marginLeft: '5px'}}
+                                >
+                                  Dislike
+                                </span>
+                              </FeatBtn>
+                              <FeatBtn
+                                isDark={isDark}
+                                type="button"
+                                onClick={() => toggleSaved(videoData)}
+                                isLiked={isSaved}
+                              >
+                                <IoMdSave size={16} />
+                                <span
+                                  style={{fontSize: '16px', marginLeft: '5px'}}
+                                >
+                                  {isSaved ? 'Saved' : 'Save'}
+                                </span>
+                              </FeatBtn>
+                            </div>
+                          </InfoContainer>
+                          <HRLine />
+                          <div
+                            style={{display: 'flex', flexDirection: 'column'}}
                           >
-                            <AiOutlineLike size={16} />
-                            <span style={{fontSize: '16px', marginLeft: '5px'}}>
-                              Like
-                            </span>
-                          </FeatBtn>
-                          <FeatBtn
-                            isDark={isDark}
-                            type="button"
-                            onClick={this.onDisliked}
-                            isLiked={isDisliked}
-                          >
-                            <AiOutlineLike size={16} />
-                            <span style={{fontSize: '16px', marginLeft: '5px'}}>
-                              Dislike
-                            </span>
-                          </FeatBtn>
-                          <FeatBtn
-                            isDark={isDark}
-                            type="button"
-                            onClick={this.onDisliked}
-                            isLiked={isDisliked}
-                          >
-                            <IoMdSave size={16} />
-                            <span style={{fontSize: '16px', marginLeft: '5px'}}>
-                              Save
-                            </span>
-                          </FeatBtn>
-                        </div>
-                      </InfoContainer>
-                      <HRLine />
-                      <div>
-                        <div>
-                          <img
-                            style={{width: '40px'}}
-                            src={profileImgUrl}
-                            alt={name}
-                          />
-                          <div>
-                            <p>{name}</p>
-                            <p>{`${subscriberCount} subscribers`}</p>
+                            <div
+                              style={{display: 'flex', alignItems: 'center'}}
+                            >
+                              <img
+                                style={{width: '50px'}}
+                                src={profileImgUrl}
+                                alt={name}
+                              />
+                              <div style={{marginLeft: '15px'}}>
+                                <p style={{marginBottom: '10px'}}>{name}</p>
+                                <p
+                                  style={{marginTop: '0px'}}
+                                >{`${subscriberCount} subscribers`}</p>
+                              </div>
+                            </div>
+                            <p>{description}</p>
                           </div>
-                        </div>
-                        <p>{description}</p>
-                      </div>
-                    </SubVideoDetails>
-                  </VideoDetails>
-                )
-              }
+                        </SubVideoDetails>
+                      </VideoDetails>
+                    )
+                  }
 
-              const renderLoader = () => (
-                <LoaderContainer
-                  className="loader-container"
-                  data-testid="loader"
-                >
-                  <Loader
-                    type="ThreeDots"
-                    color={isDark ? '#fff' : '#000'}
-                    height="65"
-                    width="65"
-                  />
-                </LoaderContainer>
-              )
+                  const renderLoader = () => (
+                    <LoaderContainer
+                      className="loader-container"
+                      data-testid="loader"
+                    >
+                      <Loader
+                        type="ThreeDots"
+                        color={isDark ? '#fff' : '#000'}
+                        height="65"
+                        width="65"
+                      />
+                    </LoaderContainer>
+                  )
 
-              const renderViews = () => {
-                const {apiStatus} = this.state
-                switch (apiStatus) {
-                  case apiStatusConstants.success:
-                    return renderVideoDetails()
-                  case apiStatusConstants.failure:
-                    return null
-                  case apiStatusConstants.inProgress:
-                    return renderLoader()
-                  default:
-                    return null
-                }
-              }
+                  const renderFailure = () => (
+                    <FailureView onClickRetry={this.onClickRetry} />
+                  )
 
-              return (
-                <VideoItemDetailsContainer isDark={isDark}>
-                  {renderViews()}
-                </VideoItemDetailsContainer>
-              )
-            }}
+                  const renderViews = () => {
+                    const {apiStatus} = this.state
+                    switch (apiStatus) {
+                      case apiStatusConstants.success:
+                        return renderVideoDetails()
+                      case apiStatusConstants.failure:
+                        return renderFailure()
+                      case apiStatusConstants.inProgress:
+                        return renderLoader()
+                      default:
+                        return null
+                    }
+                  }
+
+                  return (
+                    <VideoItemDetailsContainer isDark={isDark}>
+                      {renderViews()}
+                    </VideoItemDetailsContainer>
+                  )
+                }}
+              </SavedContext.Consumer>
+            )}
           </ThemeContext.Consumer>
         </div>
       </div>

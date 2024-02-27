@@ -16,6 +16,7 @@ export const Nav = styled.nav`
   align-items: center;
   padding: 20px 0px;
   font-family: 'Roboto';
+  margin-bottom: 0;
 
   @media (min-width: 768px) {
     padding: 25px 0px;

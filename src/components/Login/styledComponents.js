@@ -5,21 +5,21 @@ export const LoginContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${props => (props.isDark ? '#212121' : '#fff')};
+  background: ${props => (props.isDark ? '#212121' : '#ffffff')};
 `
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0px 0px 4px 0px #000;
   width: 90%;
   max-width: 500px;
   padding: 40px 25px;
   border-radius: 12px;
   background: ${props => (props.isDark ? '#000' : '#fff')};
-  color: ${props => (props.isDark ? '#fff' : '#000')};
+  color: ${props => (props.isDark ? '#ffffff' : '#000')};
 `
 export const WebImage = styled.img`
   width: 170px;
@@ -38,7 +38,7 @@ export const InputContainer = styled.div`
 
 export const Label = styled.label`
   color: ${props =>
-    props.isDark ? '#fff' : `${props.check ? '#000' : '#475569'}`};
+    props.isDark ? '#ffffff' : `${props.check ? '#000' : '#475569'}`};
   font-weight: ${props => (props.check ? '500' : '500')};
 `
 
@@ -51,19 +51,9 @@ export const Input = styled.input`
   border-radius: 5px;
   outline: none;
   background: transparent;
-  color: ${props => (props.isDark ? '#fff' : '#000')};
+  color: ${props => (props.isDark ? '#ffffff' : '#000')};
 `
-export const LoginBtn = styled.button`
-  background: #3b82f6;
-  width: 100%;
-  margin-top: 20px;
-  height: 35px;
-  border: none;
-  color: #ffffff;
-  border-radius: 8px;
-  outline: none;
-  cursor: pointer;
-`
+
 export const ShowPasswordContainer = styled.div`
   display: flex;
   align-items: center;
@@ -78,6 +68,20 @@ export const ErrorMsg = styled.p`
   margin: 0;
   font-weight: 500;
   margin-top: 10px;
+`
+
+export const LoginButton = styled.button`
+  width: 100%;
+  margin-top: 12px;
+  padding: 7px 0px 7px 0px;
+  border-radius: 8px;
+  border: none;
+  background-color: #3b82f6;
+  color: #ffffff;
+  font-weight: 500;
+  font-family: 'Roboto';
+  font-size: 15px;
+  cursor: pointer;
 `
 
 // export const nm = styled.nm``

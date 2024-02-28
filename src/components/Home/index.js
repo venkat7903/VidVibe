@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner'
 
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
-import VideoItem from '../MovieItem'
+import VideoItem from '../VideoItem'
 import FailureView from '../FailureView'
 import NoSearchResults from '../NoSearchResults'
 import ThemeContext from '../../Context/ThemeContext'
@@ -24,6 +24,7 @@ import {
   LoaderContainer,
   ViewsContainer,
   MoviesList,
+  Main,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -91,7 +92,7 @@ class Home extends Component {
   }
 
   renderBanner = () => (
-    <BannerContainer>
+    <BannerContainer data-testid="banner">
       <PremiumContainer>
         <WebImage
           alt="nxt watch logo"
@@ -103,6 +104,7 @@ class Home extends Component {
       <CrossBtn
         type="button"
         onClick={() => this.setState({isBannerPresent: false})}
+        data-testid="close"
       >
         <IoMdClose size={30} />
       </CrossBtn>
@@ -136,43 +138,40 @@ class Home extends Component {
   render() {
     const {isBannerPresent, searchInput} = this.state
     return (
-      <div data-testid="home">
-        <Navbar />
-        <div style={{display: 'flex'}}>
-          <Sidebar />
-          <ThemeContext.Consumer>
-            {value => {
-              const {isDark} = value
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDark} = value
 
-              const renderLoader = () => (
-                <LoaderContainer
-                  className="loader-container"
-                  data-testid="loader"
-                >
-                  <Loader
-                    type="ThreeDots"
-                    color={isDark ? '#fff' : '#000'}
-                    height="65"
-                    width="65"
-                  />
-                </LoaderContainer>
-              )
+          const renderLoader = () => (
+            <LoaderContainer className="loader-container" data-testid="loader">
+              <Loader
+                type="ThreeDots"
+                color={isDark ? '#fff' : '#000'}
+                height="65"
+                width="65"
+              />
+            </LoaderContainer>
+          )
 
-              const renderViews = () => {
-                const {apiStatus} = this.state
-                switch (apiStatus) {
-                  case apiStatusConstants.success:
-                    return this.renderVideoList()
-                  case apiStatusConstants.failure:
-                    return this.renderFailure()
-                  case apiStatusConstants.inProgress:
-                    return renderLoader()
-                  default:
-                    return null
-                }
-              }
+          const renderViews = () => {
+            const {apiStatus} = this.state
+            switch (apiStatus) {
+              case apiStatusConstants.success:
+                return this.renderVideoList()
+              case apiStatusConstants.failure:
+                return this.renderFailure()
+              case apiStatusConstants.inProgress:
+                return renderLoader()
+              default:
+                return null
+            }
+          }
 
-              return (
+          return (
+            <Main isDark={isDark} data-testid="home">
+              <Navbar />
+              <div style={{display: 'flex'}}>
+                <Sidebar />
                 <HomeRouteContainer isDark={isDark}>
                   {isBannerPresent && this.renderBanner()}
                   <SubHomeRouteContainer isDark={isDark}>
@@ -188,6 +187,7 @@ class Home extends Component {
                         type="button"
                         isDark={isDark}
                         onClick={this.onGetSearchResults}
+                        data-testid="searchButton"
                       >
                         <IoIosSearch size={20} />
                       </SearchBtn>
@@ -195,11 +195,11 @@ class Home extends Component {
                     <ViewsContainer>{renderViews()}</ViewsContainer>
                   </SubHomeRouteContainer>
                 </HomeRouteContainer>
-              )
-            }}
-          </ThemeContext.Consumer>
-        </div>
-      </div>
+              </div>
+            </Main>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 }

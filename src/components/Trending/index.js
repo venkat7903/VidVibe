@@ -16,6 +16,7 @@ import {
   VideosList,
   Banner,
   LogoContainer,
+  Main,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -128,13 +129,13 @@ class Trending extends Component {
           }
 
           return (
-            <div data-testid="trending">
+            <Main isDark={isDark} data-testid="trending">
               <Navbar />
               <div style={{display: 'flex'}}>
                 <Sidebar />
                 <TrendingRoute isDark={isDark}>{renderViews()}</TrendingRoute>
               </div>
-            </div>
+            </Main>
           )
         }}
       </ThemeContext.Consumer>

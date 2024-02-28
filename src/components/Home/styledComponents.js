@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const Main = styled.div`
+  background-color: ${props => (props.isDark ? '#181818' : '#f9f9f9')};
+  color: ${props => (props.isDark ? '#ffffff' : '#000')};
+`
+
 export const HomeRouteContainer = styled.div`
   display: flex;
   flex-direction: column;

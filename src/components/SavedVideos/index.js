@@ -1,4 +1,4 @@
-import {FaFire} from 'react-icons/fa'
+import {IoMdSave} from 'react-icons/io'
 
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
@@ -8,6 +8,7 @@ import ThemeContext from '../../Context/ThemeContext'
 import SavedContext from '../../Context/SavedVideos'
 
 import {
+  Main,
   FailureContainer,
   FailHeading,
   Desc,
@@ -44,7 +45,7 @@ const SavedVideos = () => (
           const renderBanner = () => (
             <Banner isDark={isDark} data-testid="banner">
               <LogoContainer isDark={isDark}>
-                <FaFire size={30} color="#ff0000" />
+                <IoMdSave size={30} color="#ff0000" />
               </LogoContainer>
               <h1 style={{fontSize: '24px'}}>Saved Videos</h1>
             </Banner>
@@ -62,7 +63,7 @@ const SavedVideos = () => (
           )
 
           return (
-            <div data-testid="savedVideos">
+            <Main isDark={isDark} data-testid="savedVideos">
               <Navbar />
               <div style={{display: 'flex'}}>
                 <Sidebar />
@@ -70,7 +71,7 @@ const SavedVideos = () => (
                   {!isEmpty ? renderNoVideos() : renderSavedVideos()}
                 </SavedVideoRoute>
               </div>
-            </div>
+            </Main>
           )
         }}
       </SavedContext.Consumer>

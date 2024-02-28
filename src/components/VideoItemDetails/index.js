@@ -170,11 +170,12 @@ class VideoItemDetails extends Component {
                                 isLiked={isLiked}
                               >
                                 <AiOutlineLike size={16} />
-                                <span
+                                Like
+                                {/* <span
                                   style={{fontSize: '16px', marginLeft: '5px'}}
                                 >
                                   Like
-                                </span>
+                                </span> */}
                               </FeatBtn>
                               <FeatBtn
                                 isDark={isDark}
@@ -183,11 +184,12 @@ class VideoItemDetails extends Component {
                                 isLiked={isDisliked}
                               >
                                 <AiOutlineDislike size={16} />
-                                <span
+                                Dislike
+                                {/* <span
                                   style={{fontSize: '16px', marginLeft: '5px'}}
                                 >
                                   Dislike
-                                </span>
+                                </span> */}
                               </FeatBtn>
                               <FeatBtn
                                 isDark={isDark}
@@ -214,7 +216,7 @@ class VideoItemDetails extends Component {
                               <img
                                 style={{width: '50px'}}
                                 src={profileImgUrl}
-                                alt={name}
+                                alt="channel logo"
                               />
                               <div style={{marginLeft: '15px'}}>
                                 <p style={{marginBottom: '10px'}}>{name}</p>

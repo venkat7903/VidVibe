@@ -16,6 +16,7 @@ import {
   GamesList,
   Banner,
   LogoContainer,
+  Main,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -124,13 +125,13 @@ class Gaming extends Component {
           }
 
           return (
-            <div data-testid="gaming">
+            <Main isDark={isDark} data-testid="gaming">
               <Navbar />
               <div style={{display: 'flex'}}>
                 <Sidebar />
                 <TrendingRoute isDark={isDark}>{renderViews()}</TrendingRoute>
               </div>
-            </div>
+            </Main>
           )
         }}
       </ThemeContext.Consumer>

@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const Main = styled.div`
+  background-color: ${props => (props.isDark ? '#0f0f0f' : '#f9f9f9')};
+  color: ${props => (props.isDark ? '#fff' : '#000')};
+`
+
 export const FailureContainer = styled.div`
   flex-grow: 1;
   display: flex;

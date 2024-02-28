@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const Main = styled.div`
+  background-color: ${props => (props.isDark ? '#0f0f0f' : '#f9f9f9')};
+  color: ${props => (props.isDark ? '#ffffff' : '#000')};
+`
+
 export const TrendingRoute = styled.div`
   display: flex;
   flex-direction: column;

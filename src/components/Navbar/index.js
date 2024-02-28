@@ -82,7 +82,7 @@ const Navbar = props => {
                       Cancel
                     </PopBtn>
                     <PopBtn type="button" onClick={onLogout}>
-                      Logout
+                      Confirm
                     </PopBtn>
                   </div>
                 </SubLogoutPopupContainer>

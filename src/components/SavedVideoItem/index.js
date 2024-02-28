@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import {formatDistanceToNow} from 'date-fns'
+// import {formatDistanceToNow} from 'date-fns'
 
 import ThemeContext from '../../Context/ThemeContext'
 
@@ -20,26 +20,27 @@ const SavedVideoItem = props => {
     <ThemeContext.Consumer>
       {value => {
         const {isDark} = value
-        const date = formatDistanceToNow(new Date(publishedAt)).split(' ')
+
         return (
           <Link to={`/videos/${id}`} style={{textDecoration: 'none'}}>
             <SavedVideoContainer isDark={isDark}>
               <img
-                style={{width: '50%', maxWidth: '350px'}}
+                style={{width: '50%', maxWidth: '350px', height: '180px'}}
                 src={thumbnailUrl}
-                alt="thumbnail"
+                alt="video thumbnail"
               />
-              <div style={{marginLeft: '10px'}}>
-                <h3 style={{marginTop: '0', marginBottom: '5px'}}>{title}</h3>
+              <div style={{marginLeft: '20px'}}>
+                <p style={{marginTop: '0', marginBottom: '5px'}}>{title}</p>
                 <p style={{margin: 0}}>{channel.name}</p>
                 <InfoList>
                   <InfoItem isDark={isDark}>
                     <p style={{margin: 0}}>{`${viewCount} views`}</p>
                   </InfoItem>
                   <InfoItem isDark={isDark}>
-                    <p
+                    {/* <p
                       style={{margin: 0, marginLeft: '4px'}}
-                    >{`• ${date[1]} ${date[2]} ago`}</p>
+                    >{`• ${date[1]} ${date[2]} ago`}</p> */}
+                    <p style={{margin: 0, marginLeft: '4px'}}>{publishedAt}</p>
                   </InfoItem>
                 </InfoList>
               </div>
@@ -52,3 +53,6 @@ const SavedVideoItem = props => {
 }
 
 export default SavedVideoItem
+
+// const date = formatDistanceToNow(new Date(publishedAt)).split(' ')
+//         const dateData = formatDistanceToNow(new Date(publishedAt))

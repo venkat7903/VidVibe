@@ -11,7 +11,7 @@ import {
   Label,
   InputContainer,
   Input,
-  LoginBtn,
+  LoginButton,
   ShowPasswordContainer,
   CheckBox,
   ErrorMsg,
@@ -133,7 +133,9 @@ class Login extends Component {
                     Show Password
                   </Label>
                 </ShowPasswordContainer>
-                <LoginBtn type="submit">Login</LoginBtn>
+                <div style={{color: '#ffffff', width: '100%'}}>
+                  <LoginButton type="submit">Login</LoginButton>
+                </div>
                 {showErrorMsg && <ErrorMsg>*{errorMsg}</ErrorMsg>}
               </Form>
             </LoginContainer>
@@ -145,3 +147,5 @@ class Login extends Component {
 }
 
 export default Login
+
+// style={{color: '#ffffff'}}

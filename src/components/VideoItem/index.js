@@ -1,4 +1,4 @@
-// import {formatDistanceToNow} from 'date-fns'
+import {formatDistanceToNow} from 'date-fns'
 import {Link} from 'react-router-dom'
 
 import ThemeContext from '../../Context/ThemeContext'
@@ -24,6 +24,13 @@ const VideoItem = props => {
     id,
   } = videoDetails
   const {name, profileImageUrl} = channel
+
+  let date = formatDistanceToNow(new Date(publishedAt))
+  const dateList = date.split(' ')
+  if (dateList.length === 3) {
+    dateList.shift()
+    date = dateList.join(' ')
+  }
 
   return (
     <ThemeContext.Consumer>
@@ -68,10 +75,7 @@ const VideoItem = props => {
                         <p style={{fontSize: '15px'}}>{`${viewCount} views`}</p>
                       </li>
                       <SpecItem>
-                        <p style={{fontSize: '15px'}}>
-                          {/* {`${date[1]} ${date[2]}  ago`} */}
-                          {publishedAt}
-                        </p>
+                        <p style={{fontSize: '15px'}}>{`${date} ago`}</p>
                       </SpecItem>
                     </InfoList>
                   </TitleInfoListContainer>
@@ -86,6 +90,3 @@ const VideoItem = props => {
 }
 
 export default VideoItem
-
-// const date = formatDistanceToNow(new Date(publishedAt)).split(' ')
-//   const data = formatDistanceToNow(new Date(publishedAt))

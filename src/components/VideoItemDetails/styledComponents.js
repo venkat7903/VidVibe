@@ -50,7 +50,7 @@ export const FeatBtn = styled.button`
   background: transparent;
   border: none;
   color: ${props => (props.isLiked ? '#2563eb' : '#64748b')};
-  font-weight: 500;
+  font-weight: 520;
   display: flex;
   align-items: center;
   padding: 0;

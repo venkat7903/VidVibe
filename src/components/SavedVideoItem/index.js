@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-// import {formatDistanceToNow} from 'date-fns'
+import {formatDistanceToNow} from 'date-fns'
 
 import ThemeContext from '../../Context/ThemeContext'
 
@@ -16,13 +16,12 @@ const SavedVideoItem = props => {
     channel,
   } = videoDetails
 
-  //   let date = formatDistanceToNow(new Date(publishedAt))
-  //   const dateList = date.split(' ')
-  //   console.log(formatDistanceToNow(new Date(publishedAt)))
-  //   if (dateList.length === 3) {
-  //     dateList.shift()
-  //     date = dateList.join(' ')
-  //   }
+  let date = formatDistanceToNow(new Date(publishedAt))
+  const dateList = date.split(' ')
+  if (dateList.length === 3) {
+    dateList.shift()
+    date = dateList.join(' ')
+  }
 
   return (
     <ThemeContext.Consumer>
@@ -45,10 +44,9 @@ const SavedVideoItem = props => {
                     <p style={{margin: 0}}>{`${viewCount} views`}</p>
                   </InfoItem>
                   <InfoItem isDark={isDark}>
-                    {/* <p
+                    <p
                       style={{margin: 0, marginLeft: '4px'}}
-                    >{`• ${date[1]} ${date[2]} ago`}</p> */}
-                    <p style={{margin: 0, marginLeft: '4px'}}>{publishedAt}</p>
+                    >{`• ${date} ago`}</p>
                   </InfoItem>
                 </InfoList>
               </div>

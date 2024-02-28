@@ -79,7 +79,7 @@ class VideoItemDetails extends Component {
     if (response.ok === true) {
       const data = await response.json()
       const formattedData = getFormattedData(data.video_details)
-      console.log(formattedData)
+
       this.setState({
         videoData: formattedData,
         apiStatus: apiStatusConstants.success,
@@ -117,9 +117,15 @@ class VideoItemDetails extends Component {
             {value => (
               <SavedContext.Consumer>
                 {saveValue => {
-                  const {savedVideos, toggleSaved} = saveValue
+                  const {
+                    savedVideos,
+                    toggleSaved,
+                    likedVideos,
+                    toggleLiked,
+                    dislikedVideos,
+                    toggleDisliked,
+                  } = saveValue
                   const {isDark} = value
-                  const {isLiked, isDisliked} = this.state
 
                   const savedIdList = savedVideos.map(each => each.id)
 
@@ -137,6 +143,9 @@ class VideoItemDetails extends Component {
                     const {name, profileImgUrl, subscriberCount} = channel
 
                     const isSaved = savedIdList.includes(id)
+                    const isLiked = likedVideos.includes(id)
+
+                    const isDisliked = dislikedVideos.includes(id)
 
                     const date = formatDistanceToNow(
                       new Date(publishedAt),
@@ -166,30 +175,30 @@ class VideoItemDetails extends Component {
                               <FeatBtn
                                 isDark={isDark}
                                 type="button"
-                                onClick={this.onLike}
+                                onClick={() => toggleLiked(id)}
                                 isLiked={isLiked}
                               >
-                                <AiOutlineLike size={16} />
-                                Like
-                                {/* <span
+                                <AiOutlineLike size={20} />
+                                {/* Like */}
+                                <span
                                   style={{fontSize: '16px', marginLeft: '5px'}}
                                 >
-                                  Like
-                                </span> */}
+                                  {isLiked ? 'Liked' : 'Like'}
+                                </span>
                               </FeatBtn>
                               <FeatBtn
                                 isDark={isDark}
                                 type="button"
-                                onClick={this.onDisliked}
+                                onClick={() => toggleDisliked(id)}
                                 isLiked={isDisliked}
                               >
-                                <AiOutlineDislike size={16} />
-                                Dislike
-                                {/* <span
+                                <AiOutlineDislike size={20} />
+                                {/* Dislike */}
+                                <span
                                   style={{fontSize: '16px', marginLeft: '5px'}}
                                 >
-                                  Dislike
-                                </span> */}
+                                  {isDisliked ? 'Disliked' : 'Dislike'}
+                                </span>
                               </FeatBtn>
                               <FeatBtn
                                 isDark={isDark}
@@ -197,7 +206,7 @@ class VideoItemDetails extends Component {
                                 onClick={() => toggleSaved(videoData)}
                                 isLiked={isSaved}
                               >
-                                <IoMdSave size={16} />
+                                <IoMdSave size={20} />
                                 <span
                                   style={{fontSize: '16px', marginLeft: '5px'}}
                                 >

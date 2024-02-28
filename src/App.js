@@ -18,7 +18,13 @@ import './App.css'
 
 // Replace your code here
 class App extends Component {
-  state = {isDark: false, activeMenu: 'HOME', savedVideos: []}
+  state = {
+    isDark: false,
+    activeMenu: 'HOME',
+    savedVideos: [],
+    likedVideos: [],
+    dislikedVideos: [],
+  }
 
   toggleSaved = data => {
     const {savedVideos} = this.state
@@ -34,6 +40,42 @@ class App extends Component {
     }
   }
 
+  toggleLiked = id => {
+    const {likedVideos, dislikedVideos} = this.state
+
+    if (dislikedVideos.includes(id)) {
+      const filteredList = dislikedVideos.filter(each => each !== id)
+      this.setState({dislikedVideos: filteredList})
+    }
+
+    if (likedVideos.includes(id)) {
+      const filteredList = likedVideos.filter(each => each !== id)
+      this.setState({likedVideos: filteredList})
+    } else {
+      this.setState(prevState => ({
+        likedVideos: [...prevState.likedVideos, id],
+      }))
+    }
+  }
+
+  toggleDisliked = id => {
+    const {likedVideos, dislikedVideos} = this.state
+
+    if (likedVideos.includes(id)) {
+      const filteredList = dislikedVideos.filter(each => each !== id)
+      this.setState({likedVideos: filteredList})
+    }
+
+    if (dislikedVideos.includes(id)) {
+      const filteredList = likedVideos.filter(each => each !== id)
+      this.setState({dislikedVideos: filteredList})
+    } else {
+      this.setState(prevState => ({
+        dislikedVideos: [...prevState.dislikedVideos, id],
+      }))
+    }
+  }
+
   changeTheme = () => {
     this.setState(prevState => ({isDark: !prevState.isDark}))
   }
@@ -43,14 +85,27 @@ class App extends Component {
   }
 
   render() {
-    const {isDark, activeMenu, savedVideos} = this.state
+    const {
+      isDark,
+      activeMenu,
+      savedVideos,
+      likedVideos,
+      dislikedVideos,
+    } = this.state
     return (
       <ThemeContext.Provider value={{isDark, changeTheme: this.changeTheme}}>
         <ActiveMenuContext.Provider
           value={{activeMenu, changeActiveMenu: this.changeActiveMenu}}
         >
           <SavedContext.Provider
-            value={{savedVideos, toggleSaved: this.toggleSaved}}
+            value={{
+              likedVideos,
+              dislikedVideos,
+              savedVideos,
+              toggleSaved: this.toggleSaved,
+              toggleLiked: this.toggleLiked,
+              toggleDisliked: this.toggleDisliked,
+            }}
           >
             <Switch>
               <Route exact path="/login" component={Login} />

@@ -10,6 +10,7 @@ export const HomeRouteContainer = styled.div`
   flex-direction: column;
   width: 100%;
   background: ${props => (props.isDark ? '#181818' : '#f9f9f9')};
+  overflow: auto;
   height: 100vh;
 `
 export const BannerContainer = styled.div`
@@ -22,7 +23,8 @@ export const BannerContainer = styled.div`
   padding: 10px 30px;
   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
   @media (min-width: 768px) {
-    height: 200px;
+    height: 230px;
+    flex-shrink: 0;
   }
 `
 
@@ -66,7 +68,7 @@ export const SubHomeRouteContainer = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+
   @media (min-width: 576px) {
     padding: 30px 20px;
   }

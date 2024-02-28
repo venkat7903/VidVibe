@@ -134,7 +134,9 @@ class Login extends Component {
                   </Label>
                 </ShowPasswordContainer>
                 <div style={{color: '#ffffff', width: '100%'}}>
-                  <LoginButton type="submit">Login</LoginButton>
+                  <LoginButton type="submit" style={{color: '#ffffff'}}>
+                    Login
+                  </LoginButton>
                 </div>
                 {showErrorMsg && <ErrorMsg>*{errorMsg}</ErrorMsg>}
               </Form>

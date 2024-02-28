@@ -16,6 +16,14 @@ const SavedVideoItem = props => {
     channel,
   } = videoDetails
 
+  //   let date = formatDistanceToNow(new Date(publishedAt))
+  //   const dateList = date.split(' ')
+  //   console.log(formatDistanceToNow(new Date(publishedAt)))
+  //   if (dateList.length === 3) {
+  //     dateList.shift()
+  //     date = dateList.join(' ')
+  //   }
+
   return (
     <ThemeContext.Consumer>
       {value => {
@@ -53,6 +61,3 @@ const SavedVideoItem = props => {
 }
 
 export default SavedVideoItem
-
-// const date = formatDistanceToNow(new Date(publishedAt)).split(' ')
-//         const dateData = formatDistanceToNow(new Date(publishedAt))

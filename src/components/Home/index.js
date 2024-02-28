@@ -98,7 +98,9 @@ class Home extends Component {
           alt="nxt watch logo"
           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
         />
-        <p>Buy Nxt Watch Premium prepaid plans with UPI</p>
+        <p style={{color: '#000'}}>
+          Buy Nxt Watch Premium prepaid plans with UPI
+        </p>
         <GetItBtn type="button">GET IT NOW</GetItBtn>
       </PremiumContainer>
       <CrossBtn

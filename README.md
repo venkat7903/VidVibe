@@ -1,5 +1,3 @@
-project link - https://venkatsnxtwatch.ccbp.tech/
-
 username - raja
 password - raja@2021
 

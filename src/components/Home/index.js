@@ -96,7 +96,7 @@ class Home extends Component {
       <PremiumContainer>
         <WebImage
           alt="nxt watch logo"
-          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+          src="https://res.cloudinary.com/duyhbrsgi/image/upload/v1722942098/Screenshot_2024-08-06_154442-removebg-preview_vxuqvx.png"
         />
         <p style={{color: '#000'}}>
           Buy Nxt Watch Premium prepaid plans with UPI

@@ -22,11 +22,11 @@ export const Form = styled.form`
   color: ${props => (props.isDark ? '#ffffff' : '#000')};
 `
 export const WebImage = styled.img`
-  width: 170px;
+  width: 220px;
   align-self: center;
   margin-bottom: 20px;
   @media (min-width: 768px) {
-    width: 200px;
+    width: 250px;
   }
 `
 export const InputContainer = styled.div`

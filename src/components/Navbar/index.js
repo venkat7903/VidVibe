@@ -96,11 +96,12 @@ const Navbar = props => {
             <SubNav>
               <Link to="/">
                 <WebImage
-                  src={
-                    isDark
-                      ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
-                      : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
-                  }
+                  //   src={
+                  //     isDark
+                  //       ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                  //       : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                  //   }
+                  src="https://res.cloudinary.com/duyhbrsgi/image/upload/v1722942098/Screenshot_2024-08-06_154442-removebg-preview_vxuqvx.png"
                   alt="website logo"
                 />
               </Link>

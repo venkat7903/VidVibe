@@ -17,6 +17,8 @@ import {
   ErrorMsg,
 } from './styledComponents'
 
+import './index.css'
+
 class Login extends Component {
   state = {
     username: '',
@@ -89,13 +91,19 @@ class Login extends Component {
             <LoginContainer isDark={isDark}>
               <Form isDark={isDark} onSubmit={this.onSubmitForm}>
                 <WebImage
-                  src={
-                    isDark
-                      ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
-                      : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
-                  }
+                  //   src={
+                  //     isDark
+                  //       ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                  //       : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                  //   }
+                  src="https://res.cloudinary.com/duyhbrsgi/image/upload/v1722942098/Screenshot_2024-08-06_154442-removebg-preview_vxuqvx.png"
                   alt="website logo"
                 />
+                <h1 className="user-credentials">User Credentials: </h1>
+                <div className="credential-container">
+                  <span className="credential">Username: raja</span>
+                  <span className="credential">Password: raja@2021</span>
+                </div>
                 <InputContainer isDark={isDark}>
                   <Label isDark={isDark} htmlFor="username">
                     USERNAME
